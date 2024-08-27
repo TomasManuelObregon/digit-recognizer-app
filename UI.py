@@ -78,38 +78,37 @@ with col1:
 
     if canvas_result.image_data is not None:
         image_data = np.array(canvas_result.image_data).astype(np.uint8)
-        # image_resized = cv2.resize(image_data, (28, 28), interpolation=cv2.INTER_AREA)
-        # image_resized = cv2.cvtColor(image_resized, cv2.COLOR_RGBA2GRAY)
+        image_resized = cv2.resize(image_data, (28, 28), interpolation=cv2.INTER_AREA)
+        image_resized = cv2.cvtColor(image_resized, cv2.COLOR_RGBA2GRAY)
 
 
-        # st.image(image_resized, caption="28x28 pixels image", use_column_width=True)
+        st.image(image_resized, caption="28x28 pixels image", use_column_width=True)
 
 
-        # output = torch.tensor(image_resized, dtype=torch.float32).reshape(-1, 1, 28, 28)/255
+        output = torch.tensor(image_resized, dtype=torch.float32).reshape(-1, 1, 28, 28)/255
 
-        # model_CNN.eval()
-        # with torch.no_grad():
-        #     prediction = model_CNN(output)
+        model_CNN.eval()
+        with torch.no_grad():
+            prediction = model_CNN(output)
             
-        #     inverted_prediction = torch.flip(prediction[0], dims=[0])
-        #     max_value, max_index = torch.max(inverted_prediction, dim=0)
+            inverted_prediction = torch.flip(prediction[0], dims=[0])
+            max_value, max_index = torch.max(inverted_prediction, dim=0)
 
 
 with col2:
-    st.write('hola')
-    # if max_value >= .85:
-    #     st.markdown("<h2 style='text-align: center;'>Predict:</h>", unsafe_allow_html=True)
+    if max_value >= .85:
+        st.markdown("<h2 style='text-align: center;'>Predict:</h>", unsafe_allow_html=True)
         
-    #     source = pd.DataFrame({
-    #             'Number': [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
-    #             'Probability': inverted_prediction})
+        source = pd.DataFrame({
+                'Number': [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+                'Probability': inverted_prediction})
 
     
-    #     with st.container(border=True):
-    #         st.bar_chart(source, x="Number", y="Probability",
-    #                       horizontal=True, height=490)
+        with st.container(border=True):
+            st.bar_chart(source, x="Number", y="Probability",
+                          horizontal=True, height=490)
             
-    # else: 
-    #     st.markdown("<h1 style='text-align: center;'>Sorry...</h1>", unsafe_allow_html=True)
-    #     warning = "The Neural Network can't figure it out. Try again!"
-    #     st.markdown(f"<h2 style='text-align: center;'>{warning}</h2>", unsafe_allow_html=True)
+    else: 
+        st.markdown("<h1 style='text-align: center;'>Sorry...</h1>", unsafe_allow_html=True)
+        warning = "The Neural Network can't figure it out. Try again!"
+        st.markdown(f"<h2 style='text-align: center;'>{warning}</h2>", unsafe_allow_html=True)
