@@ -54,7 +54,7 @@ class Model_CNN(nn.Module):
 
     
 model_CNN = Model_CNN()
-model_CNN.load_state_dict(torch.load('/Users/tomas/Desktop/Number/model_parameters_conv.pth'))
+model_CNN.load_state_dict(torch.load('https://github.com/TomasManuelObregon/digit-recognizer-app/blob/375968b031d3c2301653a1ee4a12549a2cca3958/model_parameters_conv.pth'))
 
 #%% 
 
@@ -112,11 +112,3 @@ with col2:
         st.markdown("<h1 style='text-align: center;'>Sorry...</h1>", unsafe_allow_html=True)
         warning = "The Neural Network can't figure it out. Try again!"
         st.markdown(f"<h2 style='text-align: center;'>{warning}</h2>", unsafe_allow_html=True)
-
-
-
-
-
-
-
-
