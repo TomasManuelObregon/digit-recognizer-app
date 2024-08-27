@@ -1,1 +1,6 @@
+streamlit
 streamlit_drawable_canvas
+pandas
+numpy
+cv2
+torch 
