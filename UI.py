@@ -96,7 +96,7 @@ with col1:
 
 
 with col2:
-       st.write('hola')
+    st.write('hola')
     # if max_value >= .85:
     #     st.markdown("<h2 style='text-align: center;'>Predict:</h>", unsafe_allow_html=True)
         
