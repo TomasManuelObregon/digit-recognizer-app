@@ -7,12 +7,14 @@ from streamlit_drawable_canvas import st_canvas
 import pandas as pd
 import numpy as np
 import cv2
+import requests
 
 import torch 
 import torch.nn as nn
 import torch.nn.functional as F
 
 #%%
+# - - - - - - - - - - - - - - - - - - - - - 
 class Model_CNN(nn.Module):
     def __init__(self):
         super().__init__()
@@ -52,12 +54,21 @@ class Model_CNN(nn.Module):
 
         return torch.softmax(x, dim=1)
 
-    
 model_CNN = Model_CNN()
-model_CNN.load_state_dict(torch.load('https://github.com/TomasManuelObregon/digit-recognizer-app/blob/375968b031d3c2301653a1ee4a12549a2cca3958/model_parameters_conv.pth'))
+
+# - - - - - - - - - - - - - - - - - - - - - 
+
+url = 'https://github.com/TomasManuelObregon/digit-recognizer-app/blob/375968b031d3c2301653a1ee4a12549a2cca3958/model_parameters_conv.pth?raw=true'
+model_path = 'model_parameters_conv.pth'
+
+response = requests.get(url)
+with open(model_path, 'wb') as f:
+    f.write(response.content)
+
+model_CNN.load_state_dict(torch.load(model_path))
 
 #%% 
-
+# - - - - - - - - - - - - - - - - - - - - - 
 st.title("Draw a number from 0 to 9")
 col1, col2 = st.columns([.4, .6])
 
