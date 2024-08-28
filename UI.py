@@ -6,8 +6,7 @@ from streamlit_drawable_canvas import st_canvas
 
 import pandas as pd
 import numpy as np
-import cv2
-import requests
+from PIL import Image
 
 import torch 
 import torch.nn as nn
@@ -88,10 +87,15 @@ with col1:
 
 
     if canvas_result.image_data is not None:
-        image_data = np.array(canvas_result.image_data).astype(np.uint8)
-        image_resized = cv2.resize(image_data, (28, 28), interpolation=cv2.INTER_AREA)
-        image_resized = cv2.cvtColor(image_resized, cv2.COLOR_RGBA2GRAY)
-
+        # image_data = np.array(canvas_result.image_data).astype(np.uint8)
+        # image_resized = cv2.resize(image_data, (28, 28), interpolation=cv2.INTER_AREA)
+        # image_resized = cv2.cvtColor(image_resized, cv2.COLOR_RGBA2GRAY)
+        
+        # Convert the canvas image data to a PIL Image        
+        image_data = Image.fromarray(np.array(canvas_result.image_data).astype(np.uint8))
+        
+        # Resize and convert image to grayscale using Pillow
+        image_resized = image_data.resize((28, 28), Image.ANTIALIAS).convert('L')
 
         st.image(image_resized, caption="28x28 pixels image", use_column_width=True)
 
