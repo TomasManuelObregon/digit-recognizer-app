@@ -100,8 +100,10 @@ with col1:
 
         st.image(image_resized, caption="28x28 pixels image", use_column_width=True)
 
-
-        output = torch.tensor(image_resized, dtype=torch.float32).reshape(-1, 1, 28, 28)/255
+        # Convert the image to a numpy array and normalize it
+        image_array = np.array(image_resized, dtype=np.float32) / 255
+        # Add batch dimension and convert to tensor
+        output = torch.tensor(image_array).unsqueeze(0).unsqueeze(0)
 
         model_CNN.eval()
         with torch.no_grad():
