@@ -6,6 +6,7 @@ from streamlit_drawable_canvas import st_canvas
 
 import pandas as pd
 import numpy as np
+import requests 
 from PIL import Image
 
 import torch 
