@@ -96,7 +96,7 @@ with col1:
         image_data = Image.fromarray(np.array(canvas_result.image_data).astype(np.uint8))
         
         # Resize and convert image to grayscale using Pillow
-        image_resized = image_data.resize((28, 28), Image.ANTIALIAS).convert('L')
+        image_resized = image_data.resize((28, 28), Image.Resampling.LANCZOS).convert('L')
 
         st.image(image_resized, caption="28x28 pixels image", use_column_width=True)
 
