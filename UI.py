@@ -58,7 +58,7 @@ model_CNN = Model_CNN()
 
 # - - - - - - - - - - - - - - - - - - - - - 
 
-url = 'https://github.com/TomasManuelObregon/digit-recognizer-app/blob/375968b031d3c2301653a1ee4a12549a2cca3958/model_parameters_conv.pth?raw=true'
+url = 'https://github.com/TomasManuelObregon/digit-recognizer-app/raw/main/model_parameters_conv.pth'
 model_path = 'model_parameters_conv.pth'
 
 response = requests.get(url)
