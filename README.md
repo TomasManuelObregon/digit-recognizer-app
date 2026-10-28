@@ -6,7 +6,7 @@ Red neuronal convolucional entrenada con PyTorch para reconocer digitos escritos
 
 ## Demo
 
-[digits-recognizer-app.streamlit.app](https://digits-recognizer-app.streamlit.app/)
+[digit-recognizer-app-tmo.streamlit.app](https://digit-recognizer-app-tmo.streamlit.app/)
 
 ## Como funciona
 
