@@ -65,7 +65,7 @@ response = requests.get(url)
 with open(model_path, 'wb') as f:
     f.write(response.content)
 
-model_CNN.load_state_dict(torch.load(model_path))
+model_CNN.load_state_dict(torch.load(model_path, weights_only=True))
 
 #%% 
 # - - - - - - - - - - - - - - - - - - - - - 
